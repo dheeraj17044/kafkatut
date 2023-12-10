@@ -1,5 +1,7 @@
 package com.example.kafkatut.service;
 
+import com.example.kafkatut.dto.A;
+import com.example.kafkatut.dto.B;
 import com.example.kafkatut.dto.MessageRequestDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -32,4 +34,25 @@ public class KafkaProducer {
         }
     }
 
+    public void send_A(A object){
+        log.info("json object to be produced by kafka producer --> {}",object);
+        try{
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            kafkaTemplate.send("A-topic", objectMapper.writeValueAsString(object));
+        }catch (Exception e){
+            log.error("exception while producing json object ::: {}",ExceptionUtils.getFullStackTrace(e));
+        }
+    }
+
+    public void send_B(B object){
+        log.info("json object to be produced by kafka producer --> {}",object);
+        try{
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            kafkaTemplate.send("B-topic", objectMapper.writeValueAsString(object));
+        }catch (Exception e){
+            log.error("exception while producing json object ::: {}",ExceptionUtils.getFullStackTrace(e));
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.kafkatut.controller;
 
+import com.example.kafkatut.dto.A;
+import com.example.kafkatut.dto.B;
 import com.example.kafkatut.dto.MessageRequestDto;
 import com.example.kafkatut.service.KafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +27,16 @@ public class KafkaController {
         return new ResponseEntity<>("Json Object sent", HttpStatus.OK);
     }
 
+
+    @PostMapping(value = "/produce/object_a")
+    public ResponseEntity<Object> produceJsonObject_a(@RequestBody A a){
+        kafkaProducer.send_A(a);
+        return new ResponseEntity<>("A Object sent", HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/produce/object_b")
+    public ResponseEntity<Object> produceJsonObject_b(@RequestBody B b){
+        kafkaProducer.send_B(b);
+        return new ResponseEntity<>("B Object sent", HttpStatus.OK);
+    }
 }
