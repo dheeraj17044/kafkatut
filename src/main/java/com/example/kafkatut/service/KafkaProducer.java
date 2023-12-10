@@ -23,36 +23,49 @@ public class KafkaProducer {
         kafkaTemplate.send("string-topic", message);
     }
 
-    public void sendObject(MessageRequestDto requestDto){
-        log.info("json object to be produced by kafka producer --> {}",requestDto);
-        try{
+//    public void sendObject(MessageRequestDto requestDto){
+//        log.info("json object to be produced by kafka producer --> {}",requestDto);
+//        try{
+//            ObjectMapper objectMapper = new ObjectMapper();
+//
+//            kafkaTemplate.send("json-topic", objectMapper.writeValueAsString(requestDto));
+//        }catch (Exception e){
+//            log.error("exception while producing json object ::: {}",ExceptionUtils.getFullStackTrace(e));
+//        }
+//    }
+//
+//    public void send_A(A object){
+//        log.info("json object to be produced by kafka producer --> {}",object);
+//        try{
+//            ObjectMapper objectMapper = new ObjectMapper();
+//
+//            kafkaTemplate.send("A-topic", objectMapper.writeValueAsString(object));
+//        }catch (Exception e){
+//            log.error("exception while producing json object ::: {}",ExceptionUtils.getFullStackTrace(e));
+//        }
+//    }
+//
+//    public void send_B(B object){
+//        log.info("json object to be produced by kafka producer --> {}",object);
+//        try{
+//            ObjectMapper objectMapper = new ObjectMapper();
+//
+//            kafkaTemplate.send("B-topic", objectMapper.writeValueAsString(object));
+//        }catch (Exception e){
+//            log.error("exception while producing json object ::: {}",ExceptionUtils.getFullStackTrace(e));
+//        }
+//    }
+
+
+    public void sendObject(Object object) {
+        log.info("json object to be produced by kafka producer --> {}", object);
+        try {
             ObjectMapper objectMapper = new ObjectMapper();
-
-            kafkaTemplate.send("json-topic", objectMapper.writeValueAsString(requestDto));
-        }catch (Exception e){
-            log.error("exception while producing json object ::: {}",ExceptionUtils.getFullStackTrace(e));
-        }
-    }
-
-    public void send_A(A object){
-        log.info("json object to be produced by kafka producer --> {}",object);
-        try{
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            kafkaTemplate.send("A-topic", objectMapper.writeValueAsString(object));
-        }catch (Exception e){
-            log.error("exception while producing json object ::: {}",ExceptionUtils.getFullStackTrace(e));
-        }
-    }
-
-    public void send_B(B object){
-        log.info("json object to be produced by kafka producer --> {}",object);
-        try{
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            kafkaTemplate.send("B-topic", objectMapper.writeValueAsString(object));
-        }catch (Exception e){
-            log.error("exception while producing json object ::: {}",ExceptionUtils.getFullStackTrace(e));
+            // Add a type field to the JSON payload
+            String jsonPayload = objectMapper.writeValueAsString(object);
+            kafkaTemplate.send("multi-topic", jsonPayload);
+        } catch (Exception e) {
+            log.error("exception while producing json object ::: {}", ExceptionUtils.getFullStackTrace(e));
         }
     }
 }

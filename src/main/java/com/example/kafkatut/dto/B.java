@@ -3,16 +3,10 @@ package com.example.kafkatut.dto;
 import java.io.Serializable;
 
 public class B implements Serializable {
+
+    private String type;
     private int c;
     private int d;
-
-    public B(int c, int d) {
-        this.c = c;
-        this.d = d;
-    }
-
-    public B() {
-    }
 
     public int getC() {
         return c;
@@ -20,6 +14,14 @@ public class B implements Serializable {
 
     public void setC(int c) {
         this.c = c;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getD() {
@@ -33,7 +35,8 @@ public class B implements Serializable {
     @Override
     public String toString() {
         return "B{" +
-                "c=" + c +
+                "type='" + type + '\'' +
+                ", c=" + c +
                 ", d=" + d +
                 '}';
     }

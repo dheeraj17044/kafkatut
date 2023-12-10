@@ -22,21 +22,21 @@ public class KafkaController {
     }
 
     @PostMapping(value = "/produce/object")
-    public ResponseEntity<Object> produceJsonObject(@RequestBody MessageRequestDto requestDto){
+    public ResponseEntity<Object> produceJsonObject(@RequestBody Object requestDto){
         kafkaProducer.sendObject(requestDto);
         return new ResponseEntity<>("Json Object sent", HttpStatus.OK);
     }
 
-
-    @PostMapping(value = "/produce/object_a")
-    public ResponseEntity<Object> produceJsonObject_a(@RequestBody A a){
-        kafkaProducer.send_A(a);
-        return new ResponseEntity<>("A Object sent", HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/produce/object_b")
-    public ResponseEntity<Object> produceJsonObject_b(@RequestBody B b){
-        kafkaProducer.send_B(b);
-        return new ResponseEntity<>("B Object sent", HttpStatus.OK);
-    }
+//
+//    @PostMapping(value = "/produce/object_a")
+//    public ResponseEntity<Object> produceJsonObject_a(@RequestBody A a){
+//        kafkaProducer.send_A(a);
+//        return new ResponseEntity<>("A Object sent", HttpStatus.OK);
+//    }
+//
+//    @PostMapping(value = "/produce/object_b")
+//    public ResponseEntity<Object> produceJsonObject_b(@RequestBody B b){
+//        kafkaProducer.send_B(b);
+//        return new ResponseEntity<>("B Object sent", HttpStatus.OK);
+//    }
 }

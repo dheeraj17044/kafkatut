@@ -35,4 +35,11 @@ public class KafkaTopic {
                 .name("B-topic")
                 .build();
     }
+
+    @Bean
+    public NewTopic createMultiTopic(){
+        return TopicBuilder
+                .name("multi-topic")
+                .build();
+    }
 }

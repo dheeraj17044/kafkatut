@@ -6,11 +6,21 @@ import java.io.Serializable;
 
 public class MessageRequestDto implements Serializable {
 
+    private String type;
+
 //    @JsonProperty("number")
     private int number;
 
-//    @JsonProperty("message")
+    //    @JsonProperty("message")
     private String message;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public int getNumber() {
         return number;
@@ -31,7 +41,8 @@ public class MessageRequestDto implements Serializable {
     @Override
     public String toString() {
         return "MessageRequestDto{" +
-                "number=" + number +
+                "type='" + type + '\'' +
+                ", number=" + number +
                 ", message='" + message + '\'' +
                 '}';
     }
